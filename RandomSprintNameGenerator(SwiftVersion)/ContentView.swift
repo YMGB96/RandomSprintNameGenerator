@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var votingTime = false
+    @State private var showingPopover = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        Button("Set Variables Placeholder") {
+            showingPopover = true
         }
-        .padding()
+        .popover(isPresented: $showingPopover) {
+            SetFetchingVariablesView()
+        }
     }
 }
 
