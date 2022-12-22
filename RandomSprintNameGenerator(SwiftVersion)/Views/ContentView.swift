@@ -9,14 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var votingTime = false
-    @State private var showingPopover = false
+    @StateObject var randomWordFetcher = RandomWordFetcher()
+    
     var body: some View {
-        Button("Set Variables Placeholder") {
-            showingPopover = true
-        }
-        .popover(isPresented: $showingPopover) {
-            SetFetchingVariablesView()
+        NavigationView{
+            NavigationLink(destination: SetFetchingVariablesView()) {
+                Text("Vote")
+            }
         }
     }
 }

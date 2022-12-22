@@ -11,17 +11,21 @@ class RandomWordFetcher: ObservableObject {
     
     @Published var firstLetter = ""
     @Published var wordCount = ""
+    @Published var randomWords = [RandomWordElement]()
+    @Published var voterAmount = ""
     
     func getRandomWords(firstLetter: String, wordCount: String) {
         let firstLetter = firstLetter
         let wordCount = wordCount
         fetchRandomWords(url: createURL(firstletter: firstLetter, wordCount: wordCount)) { result in
-//            defer {
-//                self.isLoading = false
-//            }
             switch result {
             case .success(let data):
-                print("yay")
+                for randomWord in data {
+                    self.randomWords.append(RandomWordElement(randomWord: randomWord, voteCount: 0))
+                }
+                for elementToPrint in self.randomWords {
+                    print("\(elementToPrint)")
+                }
             case .failure(let error):
                 print(error)
             }
@@ -69,7 +73,13 @@ class RandomWordFetcher: ObservableObject {
         enum ResponseError: Error {
             case badStatusCode
         }
-    }
+}
+
 //         e.g. https://random-word-form.herokuapp.com/random/noun/a?count=3 , letter and count based on input
 
-
+extension RandomWordFetcher {
+    struct RandomWordElement: Hashable {
+        let randomWord: String
+        var voteCount: Int
+    }
+}
