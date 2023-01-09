@@ -19,7 +19,7 @@ struct VotingView: View {
                     Text("\(randomWord.voteCount) votes")
                     Button(action: {
                         print("voted for \(randomWord.randomWord)")
-                        self.randomWords[index].voteCount += 1 //0 placeholder
+                        self.randomWords[index].voteCount += 1
                         
                     }, label: {
                         Image("ballot")
@@ -39,6 +39,12 @@ struct VotingView_Previews: PreviewProvider {
         let previewWord2 = RandomWordFetcher.RandomWordElement(randomWord: "Meeny", voteCount: 0)
         let previewWord3 = RandomWordFetcher.RandomWordElement(randomWord: "Miney", voteCount: 0)
         let previewWord4 = RandomWordFetcher.RandomWordElement(randomWord: "Mo", voteCount: 0)
-        VotingView(randomWords: [previewWord1, previewWord2, previewWord3, previewWord4], voterAmount: Int("4") ?? 0)
+        let previewWord5 = RandomWordFetcher.RandomWordElement(randomWord: "I'm", voteCount: 0)
+        let previewWord6 = RandomWordFetcher.RandomWordElement(randomWord: "running", voteCount: 0)
+        let previewWord7 = RandomWordFetcher.RandomWordElement(randomWord: "out", voteCount: 0)
+        let previewWord8 = RandomWordFetcher.RandomWordElement(randomWord: "of", voteCount: 0)
+        let previewWord9 = RandomWordFetcher.RandomWordElement(randomWord: "words", voteCount: 0)
+        VotingView(randomWords: [previewWord1, previewWord2, previewWord3, previewWord4, previewWord5, previewWord6,
+                                 previewWord7, previewWord8, previewWord9], voterAmount: Int("4") ?? 0)
     }
 }
