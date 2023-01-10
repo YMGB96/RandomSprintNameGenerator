@@ -19,6 +19,8 @@
 		217AB8E2294B680100C89143 /* VotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8E1294B680100C89143 /* VotingView.swift */; };
 		217AB8E4294B682200C89143 /* VoteResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8E3294B682200C89143 /* VoteResultView.swift */; };
 		217AB8E62951A30E00C89143 /* Imprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8E52951A30E00C89143 /* Imprint.swift */; };
+		217AB8F0296D88AD00C89143 /* PreviousSprintnamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8EF296D88AD00C89143 /* PreviousSprintnamesListView.swift */; };
+		217AB8F2296D894300C89143 /* PreviousSprintnameDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8F1296D894300C89143 /* PreviousSprintnameDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		217AB8E1294B680100C89143 /* VotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingView.swift; sourceTree = "<group>"; };
 		217AB8E3294B682200C89143 /* VoteResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteResultView.swift; sourceTree = "<group>"; };
 		217AB8E52951A30E00C89143 /* Imprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Imprint.swift; sourceTree = "<group>"; };
+		217AB8EF296D88AD00C89143 /* PreviousSprintnamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousSprintnamesListView.swift; sourceTree = "<group>"; };
+		217AB8F1296D894300C89143 /* PreviousSprintnameDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousSprintnameDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,8 @@
 				217AB8E1294B680100C89143 /* VotingView.swift */,
 				217AB8E3294B682200C89143 /* VoteResultView.swift */,
 				217AB8E52951A30E00C89143 /* Imprint.swift */,
+				217AB8EF296D88AD00C89143 /* PreviousSprintnamesListView.swift */,
+				217AB8F1296D894300C89143 /* PreviousSprintnameDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,6 +298,8 @@
 				217AB8E2294B680100C89143 /* VotingView.swift in Sources */,
 				217AB8B4294B4FC800C89143 /* ContentView.swift in Sources */,
 				217AB8E0294B67EE00C89143 /* SetFetchingVariablesView.swift in Sources */,
+				217AB8F2296D894300C89143 /* PreviousSprintnameDetailsView.swift in Sources */,
+				217AB8F0296D88AD00C89143 /* PreviousSprintnamesListView.swift in Sources */,
 				217AB8E4294B682200C89143 /* VoteResultView.swift in Sources */,
 				217AB8B2294B4FC800C89143 /* RandomSprintNameGenerator_SwiftVersion_App.swift in Sources */,
 				217AB8DE294B53FA00C89143 /* RandomWordFetcher.swift in Sources */,

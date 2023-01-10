@@ -13,8 +13,32 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView{
-            NavigationLink(destination: SetFetchingVariablesView()) {
-                Text("Vote")
+            List{
+                NavigationLink("Vote on a new Sprint name", destination: SetFetchingVariablesView())
+                    .font(.title)
+                    .bold()
+                NavigationLink("Previous Sprintnames", destination: PreviousSprintnamesListView())
+                    .font(.title)
+                    .bold()
+                NavigationLink("Imprint", destination: Imprint())
+                    .font(.title)
+                    .bold()
+            }
+            .toolbar {
+                ToolbarItem(placement: .automatic) {
+                    VStack {
+                        Text("Random")
+                            .font(.title)
+                            .multilineTextAlignment(.center)
+                            .bold()
+                            .padding(.top)
+                            
+                        Text("Sprintname Generator")
+                            .font(.title)
+                            .multilineTextAlignment(.center)
+                            .bold()
+                    }
+                }
             }
         }
     }

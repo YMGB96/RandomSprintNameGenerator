@@ -13,8 +13,9 @@ class RandomWordFetcher: ObservableObject {
     @Published var wordCount = ""
     @Published var randomWords = [RandomWordElement]()
     @Published var voterAmount = ""
+    @Published var namesHaveBeenFetched = false
     
-    func getRandomWords(firstLetter: String, wordCount: String) -> [RandomWordElement] {
+    func getRandomWords(firstLetter: String, wordCount: String) async {
         let firstLetter = firstLetter
         let wordCount = wordCount
         fetchRandomWords(url: createURL(firstletter: firstLetter, wordCount: wordCount)) { result in
@@ -26,6 +27,7 @@ class RandomWordFetcher: ObservableObject {
                 for elementToPrint in self.randomWords {
                     print("\(elementToPrint)")
                 }
+                self.namesHaveBeenFetched = true
             case .failure(let error):
                 print(error)
             }
@@ -69,7 +71,6 @@ class RandomWordFetcher: ObservableObject {
                 print(url!)
                 return url!
             }
-        return randomWords
     }
         enum ResponseError: Error {
             case badStatusCode

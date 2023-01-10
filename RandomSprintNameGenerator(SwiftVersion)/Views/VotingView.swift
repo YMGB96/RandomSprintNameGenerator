@@ -11,16 +11,19 @@ import SwiftUI
 struct VotingView: View {
     @State var randomWords: [RandomWordFetcher.RandomWordElement]
     var voterAmount: Int
+    @State var castedVotes = 0
     var body: some View {
         List{
+            Text("\(castedVotes) out of \(voterAmount) votes have been cast")
             ForEach(Array(randomWords.enumerated()), id: \.element) { index, randomWord in
                 HStack {
+                    
                     Text(randomWord.randomWord)
                     Text("\(randomWord.voteCount) votes")
                     Button(action: {
                         print("voted for \(randomWord.randomWord)")
                         self.randomWords[index].voteCount += 1
-                        
+                        castedVotes += 1
                     }, label: {
                         Image("ballot")
                             .resizable(resizingMode: .stretch)
