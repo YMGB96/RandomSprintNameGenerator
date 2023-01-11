@@ -28,6 +28,11 @@ struct VotingView: View {
                 }
                 )
             }
+            if (randomWordFetcher.randomWords.count == 0) {
+                ProgressView()
+                    .frame(width: 400.0)
+                    .scaleEffect(1.5, anchor: .center)
+            }
             ForEach(Array(randomWordFetcher.randomWords.enumerated()), id: \.element) { index, randomWord in
                 HStack {
                     
@@ -66,6 +71,6 @@ struct VotingView: View {
 
 struct VotingView_Previews: PreviewProvider {
     static var previews: some View {
-        VotingView(firstLetter: "a", wordCount: "5",  voterAmount: Int("4") ?? 0)
+        VotingView(firstLetter: "a", wordCount: "10",  voterAmount: Int("4") ?? 0)
     }
 }
