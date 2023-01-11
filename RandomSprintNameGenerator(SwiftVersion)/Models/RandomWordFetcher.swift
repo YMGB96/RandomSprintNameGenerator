@@ -13,7 +13,6 @@ class RandomWordFetcher: ObservableObject {
     @Published var wordCount = ""
     @Published var randomWords = [RandomWordElement]()
     @Published var voterAmount = ""
-    @Published var namesHaveBeenFetched = false
     var isReadyToFetch: Bool {
         !firstLetter.isEmpty && !wordCount.isEmpty && !voterAmount.isEmpty
     }
@@ -27,7 +26,6 @@ class RandomWordFetcher: ObservableObject {
                 for randomWord in data {
                     self.randomWords.append(RandomWordElement(randomWord: randomWord, voteCount: 0))
                 }
-                self.namesHaveBeenFetched = true
             case .failure(let error):
                 print(error)
             }
