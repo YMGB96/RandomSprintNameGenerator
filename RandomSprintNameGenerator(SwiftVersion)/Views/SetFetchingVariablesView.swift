@@ -11,10 +11,7 @@ import Combine
 struct SetFetchingVariablesView: View {
     
     @StateObject var randomWordFetcher = RandomWordFetcher()
-    @State var submitDisabled = false
-    @State var showingInputMissingAlert = false
     var body: some View {
-//        NavigationView {
             List {
                 Text("Please enter the first letter for your new sprint name:")
                 TextField("First letter", text: $randomWordFetcher.firstLetter)
@@ -52,31 +49,15 @@ struct SetFetchingVariablesView: View {
                             randomWordFetcher.voterAmount = String(randomWordFetcher.voterAmount.prefix(3))
                         }
                     }
-                Button(action: {
-                    if randomWordFetcher.voterAmount.count > 0 && randomWordFetcher.wordCount.count > 0 &&
-                        randomWordFetcher.firstLetter.count > 0 {
-                        self.submitDisabled = true
-                        randomWordFetcher.getRandomWords(firstLetter:randomWordFetcher.firstLetter, wordCount: randomWordFetcher.wordCount)
-                    } else {
-                        showingInputMissingAlert = true
-                    }
-                }, label: {
-                    Text("Submit")
-                })
-                .disabled(!randomWordFetcher.isReadyToFetch)
-                .alert("Please fill in all fields", isPresented: $showingInputMissingAlert) {
-                    Button("OK", role: .cancel) { }
-                }
-                NavigationLink(destination: VotingView(randomWords:randomWordFetcher.randomWords, voterAmount: Int(randomWordFetcher.voterAmount) ?? 5)){
+                NavigationLink(destination: VotingView(firstLetter: randomWordFetcher.firstLetter, wordCount: randomWordFetcher.wordCount, voterAmount: Int(randomWordFetcher.voterAmount) ?? 5)){
                     Text("Vote")
                 }
-                .disabled(randomWordFetcher.namesHaveBeenFetched == false)
+                .disabled(!randomWordFetcher.isReadyToFetch)
             }
             .toolbar{
                 ToolbarItem(placement: .automatic) {Text("test")}
             }
         }
-//    }
 }
 
 
