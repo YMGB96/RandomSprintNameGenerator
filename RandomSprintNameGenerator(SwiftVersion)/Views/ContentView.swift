@@ -26,18 +26,10 @@ struct ContentView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                    VStack {
-                        Text("Random")
-                            .font(.title)
-                            .multilineTextAlignment(.center)
-                            .bold()
-                            .padding(.top)
-                            
-                        Text("Sprintname Generator")
-                            .font(.title)
-                            .multilineTextAlignment(.center)
-                            .bold()
-                    }
+                    Text("Sprintname Generator")
+                        .font(.title)
+                        .multilineTextAlignment(.center)
+                        .bold()
                 }
             }
         }

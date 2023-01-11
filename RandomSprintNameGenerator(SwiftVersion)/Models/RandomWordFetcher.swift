@@ -14,6 +14,9 @@ class RandomWordFetcher: ObservableObject {
     @Published var randomWords = [RandomWordElement]()
     @Published var voterAmount = ""
     @Published var namesHaveBeenFetched = false
+    var isReadyToFetch: Bool {
+        !firstLetter.isEmpty && !wordCount.isEmpty && !voterAmount.isEmpty
+    }
     
     func getRandomWords(firstLetter: String, wordCount: String) {
         let firstLetter = firstLetter

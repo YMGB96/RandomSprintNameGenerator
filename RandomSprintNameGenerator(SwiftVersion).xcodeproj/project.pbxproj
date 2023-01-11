@@ -58,6 +58,7 @@
 		217AB8E52951A30E00C89143 /* Imprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Imprint.swift; sourceTree = "<group>"; };
 		217AB8EF296D88AD00C89143 /* PreviousSprintnamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousSprintnamesListView.swift; sourceTree = "<group>"; };
 		217AB8F1296D894300C89143 /* PreviousSprintnameDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousSprintnameDetailsView.swift; sourceTree = "<group>"; };
+		217AB8F3296EE8A700C89143 /* RandomSprintNameGenerator(SwiftVersion).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RandomSprintNameGenerator(SwiftVersion).entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +109,7 @@
 		217AB8B0294B4FC800C89143 /* RandomSprintNameGenerator(SwiftVersion) */ = {
 			isa = PBXGroup;
 			children = (
+				217AB8F3296EE8A700C89143 /* RandomSprintNameGenerator(SwiftVersion).entitlements */,
 				217AB8E82951E90900C89143 /* Models */,
 				217AB8E72951E8F300C89143 /* Views */,
 				217AB8B1294B4FC800C89143 /* RandomSprintNameGenerator_SwiftVersion_App.swift */,
@@ -458,6 +460,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "RandomSprintNameGenerator(SwiftVersion)/RandomSprintNameGenerator(SwiftVersion).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RandomSprintNameGenerator(SwiftVersion)/Preview Content\"";
@@ -476,6 +479,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.hdi.RandomSprintNameGenerator-SwiftVersion-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -487,6 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "RandomSprintNameGenerator(SwiftVersion)/RandomSprintNameGenerator(SwiftVersion).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"RandomSprintNameGenerator(SwiftVersion)/Preview Content\"";
@@ -505,6 +512,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.hdi.RandomSprintNameGenerator-SwiftVersion-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

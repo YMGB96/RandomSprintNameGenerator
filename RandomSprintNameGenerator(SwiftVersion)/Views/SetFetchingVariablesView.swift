@@ -14,7 +14,7 @@ struct SetFetchingVariablesView: View {
     @State var submitDisabled = false
     @State var showingInputMissingAlert = false
     var body: some View {
-        NavigationView {
+//        NavigationView {
             List {
                 Text("Please enter the first letter for your new sprint name:")
                 TextField("First letter", text: $randomWordFetcher.firstLetter)
@@ -63,7 +63,7 @@ struct SetFetchingVariablesView: View {
                 }, label: {
                     Text("Submit")
                 })
-                .disabled(submitDisabled)
+                .disabled(!randomWordFetcher.isReadyToFetch)
                 .alert("Please fill in all fields", isPresented: $showingInputMissingAlert) {
                     Button("OK", role: .cancel) { }
                 }
@@ -72,8 +72,11 @@ struct SetFetchingVariablesView: View {
                 }
                 .disabled(randomWordFetcher.namesHaveBeenFetched == false)
             }
+            .toolbar{
+                ToolbarItem(placement: .automatic) {Text("test")}
+            }
         }
-    }
+//    }
 }
 
 

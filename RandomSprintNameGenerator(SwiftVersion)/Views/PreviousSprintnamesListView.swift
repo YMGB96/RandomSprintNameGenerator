@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PreviousSprintnamesListView: View {
     var body: some View {
-        NavigationView {
-            NavigationLink("Placeholder", destination: PreviousSprintnameDetailsView())
-        }
+            List{
+                NavigationLink("Placeholder", destination: PreviousSprintnameDetailsView())
+            }
     }
 }
 
