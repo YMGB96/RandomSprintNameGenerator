@@ -15,7 +15,7 @@ class RandomWordFetcher: ObservableObject {
     @Published var voterAmount = ""
     @Published var namesHaveBeenFetched = false
     
-    func getRandomWords(firstLetter: String, wordCount: String) async {
+    func getRandomWords(firstLetter: String, wordCount: String) {
         let firstLetter = firstLetter
         let wordCount = wordCount
         fetchRandomWords(url: createURL(firstletter: firstLetter, wordCount: wordCount)) { result in
@@ -23,9 +23,6 @@ class RandomWordFetcher: ObservableObject {
             case .success(let data):
                 for randomWord in data {
                     self.randomWords.append(RandomWordElement(randomWord: randomWord, voteCount: 0))
-                }
-                for elementToPrint in self.randomWords {
-                    print("\(elementToPrint)")
                 }
                 self.namesHaveBeenFetched = true
             case .failure(let error):
@@ -48,7 +45,6 @@ class RandomWordFetcher: ObservableObject {
                     do {
                         let decodedData = try JSONDecoder().decode([String].self, from: data)
                         DispatchQueue.main.async {
-                            print(decodedData)
                             completion(.success(decodedData)) }
                     } catch {
                         DispatchQueue.main.async { completion(.failure(error)) }
@@ -75,9 +71,11 @@ class RandomWordFetcher: ObservableObject {
         enum ResponseError: Error {
             case badStatusCode
         }
+    func findMostVotedRandomName() {
+        
+    }
 }
 
-//         e.g. https://random-word-form.herokuapp.com/random/noun/a?count=3 , letter and count based on input
 
 extension RandomWordFetcher {
     struct RandomWordElement: Hashable {

@@ -25,7 +25,7 @@ struct ContentView: View {
                     .bold()
             }
             .toolbar {
-                ToolbarItem(placement: .automatic) {
+                ToolbarItem(placement: .principal) {
                     VStack {
                         Text("Random")
                             .font(.title)

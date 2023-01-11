@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct VoteResultView: View {
+    @State var chosenSprintName: String
     var body: some View {
-        Text("The chosen Sprintname is [placeholder, yay]!")
+        Text("The chosen Sprintname is \(chosenSprintName)!\n(in the future, you can save the result and there will actually be something resembling desing")
+        
     }
 }
 
 struct VoteResultView_Previews: PreviewProvider {
     static var previews: some View {
-        VoteResultView()
+        let previewWinner = "Tester"
+        VoteResultView(chosenSprintName: previewWinner)
     }
 }

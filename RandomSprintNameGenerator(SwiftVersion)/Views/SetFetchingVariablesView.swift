@@ -56,10 +56,10 @@ struct SetFetchingVariablesView: View {
                         }
                     }
                 Button(action: {
-                    Task {
-                        if randomWordFetcher.randomWords.count == 0 {
-                            await randomWordFetcher.getRandomWords(firstLetter:randomWordFetcher.firstLetter, wordCount: randomWordFetcher.wordCount)
-                        }
+                    self.submitDisabled = true //doesn't disable the button, because??
+                    if randomWordFetcher.randomWords.count == 0 {
+                        randomWordFetcher.getRandomWords(firstLetter:randomWordFetcher.firstLetter, wordCount: randomWordFetcher.wordCount)
+                        
                     }
                 }, label: {
                     Text("Submit")

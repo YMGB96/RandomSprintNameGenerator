@@ -12,18 +12,30 @@ struct VotingView: View {
     @State var randomWords: [RandomWordFetcher.RandomWordElement]
     var voterAmount: Int
     @State var castedVotes = 0
+    @State var showingVotingResult = false
     var body: some View {
         List{
-            Text("\(castedVotes) out of \(voterAmount) votes have been cast")
+            HStack {
+                Text("\(castedVotes) out of \(voterAmount) votes have been cast")
+                Button(action: {
+                    if (castedVotes == voterAmount) {
+                        self.showingVotingResult = true
+                    }
+                }, label: {
+                    Text("Submit")
+                }
+                )
+            }
             ForEach(Array(randomWords.enumerated()), id: \.element) { index, randomWord in
                 HStack {
                     
                     Text(randomWord.randomWord)
                     Text("\(randomWord.voteCount) votes")
                     Button(action: {
-                        print("voted for \(randomWord.randomWord)")
-                        self.randomWords[index].voteCount += 1
-                        castedVotes += 1
+                        if (castedVotes != voterAmount) {
+                            self.randomWords[index].voteCount += 1
+                            castedVotes += 1
+                        }
                     }, label: {
                         Image("ballot")
                             .resizable(resizingMode: .stretch)
@@ -33,8 +45,19 @@ struct VotingView: View {
                 }
             }
         }
+        .popover(isPresented: $showingVotingResult) {
+            //need to check if multiples exist
+            let mostVotedRandomName = randomWords.max(by: { $0.voteCount < $1.voteCount } )
+            if (randomWords.filter { $0.voteCount == mostVotedRandomName?.voteCount }.count == 1) {
+                let winningName = mostVotedRandomName!.randomWord
+                VoteResultView(chosenSprintName: winningName)
+            } else if (randomWords.filter { $0.voteCount == mostVotedRandomName?.voteCount }.count > 1) {
+                Text("Placeholder for tiebreaker, with the options for a second round of votes between the tied names or by a randomized selection")
+            }
+        }
     }
 }
+
 
 struct VotingView_Previews: PreviewProvider {
     static var previews: some View {
