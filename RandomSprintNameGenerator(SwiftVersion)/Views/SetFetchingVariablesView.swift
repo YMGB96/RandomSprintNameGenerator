@@ -11,7 +11,8 @@ import Combine
 struct SetFetchingVariablesView: View {
     
     @StateObject var randomWordFetcher = RandomWordFetcher()
-    @State var submitDisabled = true
+    @State var submitDisabled = false
+    @State var showingInputMissingAlert = false
     var body: some View {
         NavigationView {
             List {
@@ -50,34 +51,31 @@ struct SetFetchingVariablesView: View {
                         if randomWordFetcher.voterAmount.count > 3 {
                             randomWordFetcher.voterAmount = String(randomWordFetcher.voterAmount.prefix(3))
                         }
-                        if randomWordFetcher.voterAmount.count > 0 && randomWordFetcher.wordCount.count > 0 &&
-                            randomWordFetcher.firstLetter.count > 0 {
-                            self.submitDisabled = false
-                        }
                     }
                 Button(action: {
-                    self.submitDisabled = true //doesn't disable the button, because??
-                    if randomWordFetcher.randomWords.count == 0 {
+                    if randomWordFetcher.voterAmount.count > 0 && randomWordFetcher.wordCount.count > 0 &&
+                        randomWordFetcher.firstLetter.count > 0 {
+                        self.submitDisabled = true
                         randomWordFetcher.getRandomWords(firstLetter:randomWordFetcher.firstLetter, wordCount: randomWordFetcher.wordCount)
-                        
+                    } else {
+                        showingInputMissingAlert = true
                     }
                 }, label: {
                     Text("Submit")
                 })
-                .disabled(submitDisabled == true)
+                .disabled(submitDisabled)
+                .alert("Please fill in all fields", isPresented: $showingInputMissingAlert) {
+                    Button("OK", role: .cancel) { }
+                }
                 NavigationLink(destination: VotingView(randomWords:randomWordFetcher.randomWords, voterAmount: Int(randomWordFetcher.voterAmount) ?? 5)){
                     Text("Vote")
                 }
                 .disabled(randomWordFetcher.namesHaveBeenFetched == false)
             }
-            .onAppear() {
-                if randomWordFetcher.randomWords.count == 0 {
-                    self.submitDisabled = true
-                }
-            }
         }
     }
 }
+
 
 
 struct SetFetchingVariablesView_Previews: PreviewProvider {

@@ -64,7 +64,6 @@ class RandomWordFetcher: ObservableObject {
                 
                 urlComponents.queryItems = [ URLQueryItem(name: "count", value: wordCount) ]
                 let url = urlComponents.url
-                print(url!)
                 return url!
             }
     }
