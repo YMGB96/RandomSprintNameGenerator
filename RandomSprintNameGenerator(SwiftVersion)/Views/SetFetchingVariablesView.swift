@@ -49,7 +49,7 @@ struct SetFetchingVariablesView: View {
                             randomWordFetcher.voterAmount = String(randomWordFetcher.voterAmount.prefix(3))
                         }
                     }
-                NavigationLink(destination: VotingView(voterAmount: Int(randomWordFetcher.voterAmount) ?? 5,randomWordFetcher: randomWordFetcher)){
+                NavigationLink(destination: VotingView(voterAmount: Int(randomWordFetcher.voterAmount) ?? 5,roundsOfVotes: 1, randomWordFetcher: randomWordFetcher)){
                     Text("Vote")
                 }
                 .disabled(!randomWordFetcher.isReadyToFetch)

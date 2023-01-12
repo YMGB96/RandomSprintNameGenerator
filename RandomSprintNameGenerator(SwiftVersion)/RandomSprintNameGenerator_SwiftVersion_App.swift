@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct RandomSprintNameGenerator_SwiftVersion_App: App {
+    private static var dataController = DataController()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext, Self.dataController.container.viewContext)
         }
     }
 }

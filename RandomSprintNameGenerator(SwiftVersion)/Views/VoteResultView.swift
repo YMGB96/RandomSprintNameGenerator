@@ -6,15 +6,20 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct VoteResultView: View {
+    
     @ObservedObject var randomWordFetcher: RandomWordFetcher
     @State var chosenSprintName: String
     @Binding var showingVotingResult: Bool
     @Binding var castedVotes: Int
+    @Binding var roundsOfVotes: Int
     var voteHasOneWinner: Bool
     var topVoteCount: Int
     @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var moc
+    
     var body: some View {
         if (voteHasOneWinner) {
             VStack{
@@ -26,14 +31,21 @@ struct VoteResultView: View {
                     .foregroundColor(.green)
                 Text("\n")
                 Button(action: {
+                    let newEntry = SprintNames (context: moc)
+                    newEntry.id = UUID()
+                    newEntry.name = chosenSprintName
+                    newEntry.dateOfVote = Date()
+                    newEntry.receivedVotes = Int16(topVoteCount)
+                    newEntry.totalVotes = Int16(castedVotes)
+                    newEntry.roundsOfVotes = Int16(roundsOfVotes)
+                    
+                    try? moc.save()
+                    
                     showingVotingResult = false
                 }, label: {
                     Text("Save & Exit")
                         .font(.title2)
                 })
-                Text("saving to be added soon")
-                    .font(.caption)
-                    .foregroundColor(.gray)
             }
         }
         if (!voteHasOneWinner) {
@@ -43,6 +55,7 @@ struct VoteResultView: View {
                 Text("")
                 Button(action: {
                     randomWordFetcher.prepForTiebreaker(topVoteCount: topVoteCount)
+                    roundsOfVotes += 1
                     castedVotes = 0
                     dismiss()
                 }, label: {
@@ -56,6 +69,6 @@ struct VoteResultView: View {
 }
 struct VoteResultView_Previews: PreviewProvider {
     static var previews: some View {
-        VoteResultView(randomWordFetcher: RandomWordFetcher(), chosenSprintName: "Testwinner", showingVotingResult: .constant(true), castedVotes: .constant(4), voteHasOneWinner: false, topVoteCount: 3)
+        VoteResultView(randomWordFetcher: RandomWordFetcher(), chosenSprintName: "Testwinner", showingVotingResult: .constant(true), castedVotes: .constant(4), roundsOfVotes: .constant(2), voteHasOneWinner: false, topVoteCount: 3)
     }
 }

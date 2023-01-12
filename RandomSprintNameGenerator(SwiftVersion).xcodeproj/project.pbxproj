@@ -22,6 +22,7 @@
 		217AB8F0296D88AD00C89143 /* PreviousSprintnamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8EF296D88AD00C89143 /* PreviousSprintnamesListView.swift */; };
 		217AB8F2296D894300C89143 /* PreviousSprintnameDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8F1296D894300C89143 /* PreviousSprintnameDetailsView.swift */; };
 		217AB8F9297035D700C89143 /* SprintNames.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8F7297035D700C89143 /* SprintNames.xcdatamodeld */; };
+		217AB8FB2970379200C89143 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8FA2970379200C89143 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		217AB8F1296D894300C89143 /* PreviousSprintnameDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousSprintnameDetailsView.swift; sourceTree = "<group>"; };
 		217AB8F3296EE8A700C89143 /* RandomSprintNameGenerator(SwiftVersion).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RandomSprintNameGenerator(SwiftVersion).entitlements"; sourceTree = "<group>"; };
 		217AB8F8297035D700C89143 /* SprintNames.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SprintNames.xcdatamodel; sourceTree = "<group>"; };
+		217AB8FA2970379200C89143 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +114,12 @@
 			isa = PBXGroup;
 			children = (
 				217AB8F3296EE8A700C89143 /* RandomSprintNameGenerator(SwiftVersion).entitlements */,
+				217AB8B1294B4FC800C89143 /* RandomSprintNameGenerator_SwiftVersion_App.swift */,
+				217AB8F7297035D700C89143 /* SprintNames.xcdatamodeld */,
 				217AB8E82951E90900C89143 /* Models */,
 				217AB8E72951E8F300C89143 /* Views */,
-				217AB8B1294B4FC800C89143 /* RandomSprintNameGenerator_SwiftVersion_App.swift */,
 				217AB8B5294B4FC900C89143 /* Assets.xcassets */,
 				217AB8B7294B4FC900C89143 /* Preview Content */,
-				217AB8F7297035D700C89143 /* SprintNames.xcdatamodeld */,
 			);
 			path = "RandomSprintNameGenerator(SwiftVersion)";
 			sourceTree = "<group>";
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				217AB8DD294B53FA00C89143 /* RandomWordFetcher.swift */,
+				217AB8FA2970379200C89143 /* DataController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				217AB8F9297035D700C89143 /* SprintNames.xcdatamodeld in Sources */,
 				217AB8B4294B4FC800C89143 /* ContentView.swift in Sources */,
 				217AB8E0294B67EE00C89143 /* SetFetchingVariablesView.swift in Sources */,
+				217AB8FB2970379200C89143 /* DataController.swift in Sources */,
 				217AB8F2296D894300C89143 /* PreviousSprintnameDetailsView.swift in Sources */,
 				217AB8F0296D88AD00C89143 /* PreviousSprintnamesListView.swift in Sources */,
 				217AB8E4294B682200C89143 /* VoteResultView.swift in Sources */,
