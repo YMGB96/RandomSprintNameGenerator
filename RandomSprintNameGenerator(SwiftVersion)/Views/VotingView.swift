@@ -13,11 +13,13 @@ struct VotingView: View {
     @State var castedVotes = 0
     @State var roundsOfVotes: Int
     @State var showingVotingResult = false
+    @State var voteHasFinished = false
     @ObservedObject var randomWordFetcher: RandomWordFetcher
     var body: some View {
         List{
             HStack {
                 Text("\(castedVotes) out of \(voterAmount) votes have been cast")
+                    .font(.title3)
                 Button(action: {
                     self.showingVotingResult = true
                 }, label: {
@@ -27,7 +29,7 @@ struct VotingView: View {
                         
                 }
                 )
-                .disabled(castedVotes != voterAmount)
+                .disabled(castedVotes != voterAmount || voteHasFinished)
             }
             
             if (randomWordFetcher.randomWords.count == 0) {
@@ -39,7 +41,9 @@ struct VotingView: View {
                 HStack {
                     
                     Text(randomWord.randomWord)
+                        .font(.title2)
                     Text("\(randomWord.voteCount) votes")
+                        .font(.title2)
                     Button(action: {
                         if (castedVotes != voterAmount) {
                             randomWordFetcher.randomWords[index].voteCount += 1
@@ -48,7 +52,7 @@ struct VotingView: View {
                     }, label: {
                         Image("ballot")
                             .resizable(resizingMode: .stretch)
-                            .frame(width: 30.0, height: 30.0)
+                            .frame(width: 35.0, height: 35.0)
                     })
                 }
             }
@@ -57,9 +61,9 @@ struct VotingView: View {
             let mostVotedRandomName = randomWordFetcher.randomWords.max(by: { $0.voteCount < $1.voteCount } )
             if (randomWordFetcher.randomWords.filter { $0.voteCount == mostVotedRandomName?.voteCount }.count == 1) {
                 let winningName = mostVotedRandomName!.randomWord
-                VoteResultView(randomWordFetcher: randomWordFetcher, chosenSprintName: winningName, showingVotingResult: $showingVotingResult, castedVotes: $castedVotes, roundsOfVotes: $roundsOfVotes, voteHasOneWinner: true, topVoteCount: mostVotedRandomName!.voteCount)
+                VoteResultView(randomWordFetcher: randomWordFetcher, chosenSprintName: winningName, showingVotingResult: $showingVotingResult, castedVotes: $castedVotes, roundsOfVotes: $roundsOfVotes, voteHasFinished: $voteHasFinished, voteHasOneWinner: true, topVoteCount: mostVotedRandomName!.voteCount)
             } else if (randomWordFetcher.randomWords.filter { $0.voteCount == mostVotedRandomName?.voteCount }.count > 1) {
-                VoteResultView(randomWordFetcher: randomWordFetcher, chosenSprintName: "there is more than one", showingVotingResult: $showingVotingResult,castedVotes: $castedVotes, roundsOfVotes: $roundsOfVotes, voteHasOneWinner: false, topVoteCount: mostVotedRandomName!.voteCount)
+                VoteResultView(randomWordFetcher: randomWordFetcher, chosenSprintName: "there is more than one", showingVotingResult: $showingVotingResult,castedVotes: $castedVotes, roundsOfVotes: $roundsOfVotes, voteHasFinished: $voteHasFinished, voteHasOneWinner: false, topVoteCount: mostVotedRandomName!.voteCount)
             }
         }
         .onAppear() {

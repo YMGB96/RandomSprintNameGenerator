@@ -14,20 +14,22 @@ struct PreviousSprintnamesListView: View {
         List{
             ForEach (sprintNames) { sprintName in
                 NavigationLink(destination: PreviousSprintnameDetailsView(name: sprintName.name ?? "no data", date: sprintName.dateOfVote ?? Date(), receivedVotes: sprintName.receivedVotes , totalVotes: sprintName.totalVotes, roundsOfVotes: sprintName.roundsOfVotes )) {
-                    VStack{
+                    HStack{
+                        Image(systemName: "calendar")
+                            .foregroundColor(.red)
+                        Text("\(sprintName.dateOfVote!.formatted(.dateTime.day().month().year()))")
                         Text(sprintName.name ?? "no data")
                             .font(.title2)
                             .bold()
                             .foregroundColor(.green)
-                        HStack{
-                            Image(systemName: "calendar")
-                                .foregroundColor(.red)
-                            Text("\(sprintName.dateOfVote!.formatted(.dateTime.day().month().year()))")
-                        }
                     }
                 }
             }
             .onDelete(perform: deleteSprintName)
+        }
+        .toolbar {
+            EditButton()
+                .font(.title2)
         }
     }
     func deleteSprintName (at offsets: IndexSet) {
@@ -47,7 +49,7 @@ struct PreviousSprintnamesListView_Previews: PreviewProvider {
             let sprintName = SprintNames(context: context)
             sprintName.id = UUID()
             sprintName.dateOfVote = Date()
-            sprintName.name = "Preview name \(index)"
+            sprintName.name = "MamboNo\(index)"
             sprintName.receivedVotes = Int16(2)
             sprintName.totalVotes = Int16(3)
         }

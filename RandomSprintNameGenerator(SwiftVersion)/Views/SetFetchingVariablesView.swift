@@ -54,6 +54,9 @@ struct SetFetchingVariablesView: View {
                 }
                 .disabled(!randomWordFetcher.isReadyToFetch)
             }
+            .onAppear() {
+                randomWordFetcher.randomWords.removeAll()
+            }
     }
 }
 

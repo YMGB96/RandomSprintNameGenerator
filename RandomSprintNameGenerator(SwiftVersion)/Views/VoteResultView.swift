@@ -15,6 +15,7 @@ struct VoteResultView: View {
     @Binding var showingVotingResult: Bool
     @Binding var castedVotes: Int
     @Binding var roundsOfVotes: Int
+    @Binding var voteHasFinished: Bool
     var voteHasOneWinner: Bool
     var topVoteCount: Int
     @Environment(\.dismiss) var dismiss
@@ -40,13 +41,14 @@ struct VoteResultView: View {
                     newEntry.roundsOfVotes = Int16(roundsOfVotes)
                     
                     try? moc.save()
-                    
+                    voteHasFinished = true
                     showingVotingResult = false
                 }, label: {
                     Text("Save & Exit")
                         .font(.title2)
                 })
             }
+            .interactiveDismissDisabled()
         }
         if (!voteHasOneWinner) {
             VStack {
@@ -62,6 +64,7 @@ struct VoteResultView: View {
                     Text("Tiebreaker vote")
                         .font(.title2)
                 })
+                .interactiveDismissDisabled()
                 
             }
         }
@@ -69,6 +72,6 @@ struct VoteResultView: View {
 }
 struct VoteResultView_Previews: PreviewProvider {
     static var previews: some View {
-        VoteResultView(randomWordFetcher: RandomWordFetcher(), chosenSprintName: "Testwinner", showingVotingResult: .constant(true), castedVotes: .constant(4), roundsOfVotes: .constant(2), voteHasOneWinner: false, topVoteCount: 3)
+        VoteResultView(randomWordFetcher: RandomWordFetcher(), chosenSprintName: "Testwinner", showingVotingResult: .constant(true), castedVotes: .constant(4), roundsOfVotes: .constant(2), voteHasFinished: .constant(false), voteHasOneWinner: false, topVoteCount: 3)
     }
 }
