@@ -68,11 +68,14 @@ class RandomWordFetcher: ObservableObject {
                 return url!
             }
     }
-        enum ResponseError: Error {
-            case badStatusCode
+    enum ResponseError: Error {
+        case badStatusCode
+    }
+    func prepForTiebreaker(topVoteCount: Int) {
+        randomWords = randomWords.filter { $0.voteCount == topVoteCount }
+        for index in 0..<randomWords.count {
+            randomWords[index].voteCount = 0
         }
-    func findMostVotedRandomName() {
-        
     }
 }
 

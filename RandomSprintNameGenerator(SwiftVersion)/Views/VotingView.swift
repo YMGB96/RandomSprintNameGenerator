@@ -9,25 +9,26 @@ import SwiftUI
 
 
 struct VotingView: View {
-    var firstLetter: String
-    var wordCount: String
     var voterAmount: Int
     @State var castedVotes = 0
     @State var showingVotingResult = false
-    @StateObject var randomWordFetcher = RandomWordFetcher()
+    @ObservedObject var randomWordFetcher: RandomWordFetcher
     var body: some View {
         List{
             HStack {
                 Text("\(castedVotes) out of \(voterAmount) votes have been cast")
                 Button(action: {
-                    if (castedVotes == voterAmount) {
-                        self.showingVotingResult = true
-                    }
+                    self.showingVotingResult = true
                 }, label: {
-                    Text("Submit")
+                    Image(systemName: "checkmark.square.fill")
+                        .resizable(capInsets: EdgeInsets(), resizingMode: .stretch)
+                        .frame(width: 25.0, height: 25.0)
+                        
                 }
                 )
+                .disabled(castedVotes != voterAmount)
             }
+            
             if (randomWordFetcher.randomWords.count == 0) {
                 ProgressView()
                     .frame(width: 400.0)
@@ -46,24 +47,24 @@ struct VotingView: View {
                     }, label: {
                         Image("ballot")
                             .resizable(resizingMode: .stretch)
-                            .frame(width: 60.0, height: 60.0)
+                            .frame(width: 30.0, height: 30.0)
                     })
-                    .frame(width: 60.0, height: 60.0)
                 }
             }
         }
-        .popover(isPresented: $showingVotingResult) {
-            //need to check if multiples exist
+        .sheet(isPresented: $showingVotingResult) {
             let mostVotedRandomName = randomWordFetcher.randomWords.max(by: { $0.voteCount < $1.voteCount } )
             if (randomWordFetcher.randomWords.filter { $0.voteCount == mostVotedRandomName?.voteCount }.count == 1) {
                 let winningName = mostVotedRandomName!.randomWord
-                VoteResultView(chosenSprintName: winningName)
+                VoteResultView(randomWordFetcher: randomWordFetcher, chosenSprintName: winningName, showingVotingResult: $showingVotingResult, castedVotes: $castedVotes, voteHasOneWinner: true, topVoteCount: mostVotedRandomName!.voteCount)
             } else if (randomWordFetcher.randomWords.filter { $0.voteCount == mostVotedRandomName?.voteCount }.count > 1) {
-                Text("Placeholder for tiebreaker, with the options for a second round of votes between the tied names or by a randomized selection")
+                VoteResultView(randomWordFetcher: randomWordFetcher, chosenSprintName: "there is more than one", showingVotingResult: $showingVotingResult,castedVotes: $castedVotes, voteHasOneWinner: false, topVoteCount: mostVotedRandomName!.voteCount)
             }
         }
         .onAppear() {
-            randomWordFetcher.getRandomWords(firstLetter: firstLetter, wordCount: wordCount)
+            if (randomWordFetcher.randomWords.count == 0) {
+                randomWordFetcher.getRandomWords(firstLetter: randomWordFetcher.firstLetter, wordCount: randomWordFetcher.wordCount)
+            }
         }
     }
 }
@@ -71,6 +72,6 @@ struct VotingView: View {
 
 struct VotingView_Previews: PreviewProvider {
     static var previews: some View {
-        VotingView(firstLetter: "a", wordCount: "10",  voterAmount: Int("4") ?? 0)
+        VotingView(voterAmount: Int("5") ?? 0,randomWordFetcher: RandomWordFetcher())
     }
 }

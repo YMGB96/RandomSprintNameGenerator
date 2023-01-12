@@ -49,18 +49,13 @@ struct SetFetchingVariablesView: View {
                             randomWordFetcher.voterAmount = String(randomWordFetcher.voterAmount.prefix(3))
                         }
                     }
-                NavigationLink(destination: VotingView(firstLetter: randomWordFetcher.firstLetter, wordCount: randomWordFetcher.wordCount, voterAmount: Int(randomWordFetcher.voterAmount) ?? 5)){
+                NavigationLink(destination: VotingView(voterAmount: Int(randomWordFetcher.voterAmount) ?? 5,randomWordFetcher: randomWordFetcher)){
                     Text("Vote")
                 }
                 .disabled(!randomWordFetcher.isReadyToFetch)
             }
-            .toolbar{
-                ToolbarItem(placement: .automatic) {Text("test")}
-            }
-        }
+    }
 }
-
-
 
 struct SetFetchingVariablesView_Previews: PreviewProvider {
     static var previews: some View {
