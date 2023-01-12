@@ -27,9 +27,9 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("Sprintname Generator")
-                        .font(.title)
                         .multilineTextAlignment(.center)
                         .bold()
+                        .font(.title2)
                 }
             }
         }

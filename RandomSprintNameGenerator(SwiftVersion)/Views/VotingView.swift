@@ -24,7 +24,7 @@ struct VotingView: View {
                     self.showingVotingResult = true
                 }, label: {
                     Image(systemName: "checkmark.square.fill")
-                        .resizable(capInsets: EdgeInsets(), resizingMode: .stretch)
+                        .resizable(resizingMode: .stretch)
                         .frame(width: 25.0, height: 25.0)
                         
                 }
