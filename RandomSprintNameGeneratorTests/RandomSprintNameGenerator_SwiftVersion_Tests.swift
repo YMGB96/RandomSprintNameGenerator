@@ -6,24 +6,22 @@
 //
 
 import XCTest
-@testable import RandomSprintNameGenerator_SwiftVersion_
+@testable import RandomSprintNameGenerator
 
-final class RandomSprintNameGenerator_SwiftVersion_Tests: XCTestCase {
+final class RandomSprintNameGeneratorTests: XCTestCase {
 
     override func setUpWithError() throws {
-        try super.setUpWithError()
-        let randomWordFetcher = RandomWordFetcher()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testCreateURL() throws {
+    func testArrayLengthCorrect() throws {
         let randomWordFetcher = RandomWordFetcher()
-        let expectedURL = "https://random-word-form.herokuapp.com/random/noun/a?count=3"
-        randomWordFetcher.getRandomWords(firstLetter: "a", wordCount: "3")
-        XCTAssertEqual(createdURL, expectedURL)
+        randomWordFetcher.getRandomWords(firstLetter: "a", wordCount: "5")
+        XCTAssertEqual(randomWordFetcher.randomWords.count, 5)
+        
     }
     func testExample() throws {
         // This is an example of a functional test case.
