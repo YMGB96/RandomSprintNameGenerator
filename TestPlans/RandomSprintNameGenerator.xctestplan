@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "68E4350E-120F-45AA-9ED9-94D7464A4D3F",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:RandomSprintNameGenerator.xcodeproj",
+      "identifier" : "217AB8AD294B4FC800C89143",
+      "name" : "RandomSprintNameGenerator"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:RandomSprintNameGenerator.xcodeproj",
+        "identifier" : "217AB8BD294B4FC900C89143",
+        "name" : "RandomSprintNameGeneratorTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:RandomSprintNameGenerator.xcodeproj",
+        "identifier" : "217AB8C7294B4FC900C89143",
+        "name" : "RandomSprintNameGeneratorUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
