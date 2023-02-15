@@ -16,24 +16,50 @@ class RandomWordFetcher: ObservableObject {
     var isReadyToFetch: Bool {
         !firstLetter.isEmpty && !wordCount.isEmpty && !voterAmount.isEmpty && Int(wordCount) ?? 2 > 1
     }
+    var errorCallback: ((Error) -> Void)?
+    private let scheme: String
+    private let host: String
     
+    init(scheme: String = "https", host: String = "random-word-form.herokuapp.com") {
+        self.scheme = scheme
+        self.host = host
+    }
+    
+//    private var _randomW: Bubba<[RandomWordElement]>
+//    = Bubba(initialValue: [])
+//    var $randomW: Publisher {
+//        _randomW.projectedValue
+//    }
+//    var randomW: [RandomWordElement] {
+//        get { _randomW.internalArray }
+//        set {
+//            objectWillChange.send()
+//            _randomW.internalArray = newValue
+//        }
+//    }
+//
     func getRandomWords(firstLetter: String, wordCount: String) {
+        let bla = $randomWords
         let firstLetter = firstLetter
         let wordCount = wordCount
-        fetchRandomWords(url: createURL(firstletter: firstLetter, wordCount: wordCount)) { result in
+        fetchRandomWords(url: createURL(firstletter: firstLetter, wordCount: wordCount)) { [weak self] result in
             switch result {
             case .success(let data):
-                for randomWord in data {
-                    self.randomWords.append(RandomWordElement(randomWord: randomWord, voteCount: 0))
+                self?.randomWords = data.map {
+                    RandomWordElement(randomWord: $0, voteCount: 0)
                 }
+//                for randomWord in data {
+//                    self.randomWords.append(RandomWordElement(randomWord: randomWord, voteCount: 0))
+//                }
             case .failure(let error):
                 print(error)
+                self?.errorCallback?(error)
             }
         }
             
             
             func fetchRandomWords(url: URL, completion: @escaping (Result<[String], Error>) -> Void) {
-                let urlTask = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
+                let urlTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
                     if let error = error {
                         DispatchQueue.main.async { completion(.failure(error)) }
                         return
@@ -59,8 +85,8 @@ class RandomWordFetcher: ObservableObject {
                 let wordCount = wordCount
                 
                 var urlComponents = URLComponents()
-                urlComponents.scheme = "https"
-                urlComponents.host = "random-word-form.herokuapp.com"
+                urlComponents.scheme = scheme
+                urlComponents.host = host
                 urlComponents.path = "/random/noun/\(firstletter)"
                 
                 urlComponents.queryItems = [ URLQueryItem(name: "count", value: wordCount) ]

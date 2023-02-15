@@ -9,12 +9,23 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:RandomSprintNameGenerator.xcodeproj",
+          "identifier" : "217AB8AD294B4FC800C89143",
+          "name" : "RandomSprintNameGenerator"
+        }
+      ]
+    },
+    "language" : "en",
+    "region" : "US",
     "targetForVariableExpansion" : {
       "containerPath" : "container:RandomSprintNameGenerator.xcodeproj",
       "identifier" : "217AB8AD294B4FC800C89143",
       "name" : "RandomSprintNameGenerator"
-    }
+    },
+    "testExecutionOrdering" : "random"
   },
   "testTargets" : [
     {
