@@ -24,6 +24,7 @@ struct PreviousSprintnamesListView: View {
                             .foregroundColor(.green)
                     }
                 }
+                .accessibilityIdentifier("Nav_PreviousSprintnameDetailsView\(sprintName.index(ofAccessibilityElement: self))")
             }
             .onDelete(perform: deleteSprintName)
         }
@@ -45,7 +46,7 @@ struct PreviousSprintnamesListView_Previews: PreviewProvider {
     static let dataController: DataController = {
         let retVal = DataController(isInMemory: true)
         let context = retVal.container.viewContext
-        for index in 0..<5 {
+        for index in 0..<6 {
             let sprintName = SprintNames(context: context)
             sprintName.id = UUID()
             sprintName.dateOfVote = Date()

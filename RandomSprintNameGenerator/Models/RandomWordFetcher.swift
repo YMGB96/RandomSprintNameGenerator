@@ -39,7 +39,6 @@ class RandomWordFetcher: ObservableObject {
 //    }
 //
     func getRandomWords(firstLetter: String, wordCount: String) {
-        let bla = $randomWords
         let firstLetter = firstLetter
         let wordCount = wordCount
         fetchRandomWords(url: createURL(firstletter: firstLetter, wordCount: wordCount)) { [weak self] result in

@@ -47,6 +47,7 @@ struct VoteResultView: View {
                     Text("Save & Exit")
                         .font(.title2)
                 })
+                .accessibilityIdentifier("Button_SaveAndExit")
             }
             .interactiveDismissDisabled()
         }
@@ -64,6 +65,7 @@ struct VoteResultView: View {
                     Text("Tiebreaker vote")
                         .font(.title2)
                 })
+                .accessibilityIdentifier("Button_TiebreakerVote")
                 .interactiveDismissDisabled()
                 
             }

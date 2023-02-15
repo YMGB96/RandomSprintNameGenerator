@@ -30,6 +30,7 @@ struct VotingView: View {
                 }
                 )
                 .disabled(castedVotes != voterAmount || voteHasFinished)
+                .accessibilityIdentifier("Button_ShowVotingResults")
             }
             
             if (randomWordFetcher.randomWords.count == 0) {
@@ -54,6 +55,7 @@ struct VotingView: View {
                             .resizable(resizingMode: .stretch)
                             .frame(width: 35.0, height: 35.0)
                     })
+                    .accessibilityIdentifier("Button_CastVote\(index)")
                 }
             }
         }

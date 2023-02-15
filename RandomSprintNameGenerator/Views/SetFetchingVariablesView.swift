@@ -26,6 +26,7 @@ struct SetFetchingVariablesView: View {
                         randomWordFetcher.firstLetter = String(randomWordFetcher.firstLetter.prefix(1))
                     }
                 }
+                .accessibilityIdentifier("TestField_FirstLetter")
             Text("How many possible names would you like to generate? (2-10)")
                 .font(.title3)
             TextField("Word amount", text: $randomWordFetcher.wordCount)
@@ -42,6 +43,7 @@ struct SetFetchingVariablesView: View {
                         randomWordFetcher.wordCount = "10"
                     }
                 }
+                .accessibilityIdentifier("TextField_WordCount")
             Text("How many people are voting?")
                 .font(.title3)
             TextField("Voter amount", text: $randomWordFetcher.voterAmount)
@@ -55,11 +57,13 @@ struct SetFetchingVariablesView: View {
                         randomWordFetcher.voterAmount = String(randomWordFetcher.voterAmount.prefix(3))
                     }
                 }
+                .accessibilityIdentifier("TextField_VoterAmount")
             NavigationLink(destination: VotingView(voterAmount: Int(randomWordFetcher.voterAmount) ?? 5,roundsOfVotes: 1, randomWordFetcher: randomWordFetcher)){
                 Text("Vote")
                     .font(.title3)
             }
             .disabled(!randomWordFetcher.isReadyToFetch)
+            .accessibilityIdentifier("Nav_VotingView")
         }
         .onAppear() {
             randomWordFetcher.randomWords.removeAll()

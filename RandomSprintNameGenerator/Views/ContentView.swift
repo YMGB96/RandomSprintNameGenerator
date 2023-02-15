@@ -17,12 +17,15 @@ struct ContentView: View {
                 NavigationLink("Vote on a new Sprint name", destination: SetFetchingVariablesView())
                     .font(.title)
                     .bold()
+                    .accessibilityIdentifier("Nav_SetFetchingVariablesView")
                 NavigationLink("Previous Sprintnames", destination: PreviousSprintnamesListView())
                     .font(.title)
                     .bold()
+                    .accessibilityIdentifier("Nav_PreviousSprintnamesListView")
                 NavigationLink("Imprint", destination: Imprint())
                     .font(.title)
                     .bold()
+                    .accessibilityIdentifier("Nav_Imprint")
             }
             .toolbar {
                 ToolbarItem(placement: .principal) {
