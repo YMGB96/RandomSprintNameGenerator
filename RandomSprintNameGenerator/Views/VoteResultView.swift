@@ -72,8 +72,11 @@ struct VoteResultView: View {
         }
     }
 }
+
+#if !TESTING
 struct VoteResultView_Previews: PreviewProvider {
     static var previews: some View {
         VoteResultView(randomWordFetcher: RandomWordFetcher(), chosenSprintName: "Testwinner", showingVotingResult: .constant(true), castedVotes: .constant(4), roundsOfVotes: .constant(2), voteHasFinished: .constant(false), voteHasOneWinner: false, topVoteCount: 3)
     }
 }
+#endif

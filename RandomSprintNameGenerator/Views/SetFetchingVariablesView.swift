@@ -71,8 +71,11 @@ struct SetFetchingVariablesView: View {
     }
 }
 
+#if !TESTING
 struct SetFetchingVariablesView_Previews: PreviewProvider {
     static var previews: some View {
         SetFetchingVariablesView()
     }
 }
+#endif
+

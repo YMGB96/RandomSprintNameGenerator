@@ -76,9 +76,10 @@ struct VotingView: View {
     }
 }
 
-
+#if !TESTING
 struct VotingView_Previews: PreviewProvider {
     static var previews: some View {
         VotingView(voterAmount: Int("5") ?? 0,roundsOfVotes: 1, randomWordFetcher: RandomWordFetcher())
     }
 }
+#endif

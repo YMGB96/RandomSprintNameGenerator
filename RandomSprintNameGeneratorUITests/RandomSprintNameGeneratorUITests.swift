@@ -1,17 +1,22 @@
 //
-//  RandomSprintNameGenerator_SwiftVersion_UITests.swift
-//  RandomSprintNameGenerator(SwiftVersion)UITests
+//  RandomSprintNameGeneratorUITests.swift
+//  RandomSprintNameGeneratorUITests
 //
-//  Created by Yannick Brands on 15.12.22.
+//  Created by Yannick Brands on 15.02.23.
 //
 
 import XCTest
 
 final class RandomSprintNameGeneratorUITests: XCTestCase {
 
+    var app: XCUIApplication!
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
 
+        app = XCUIApplication()
+        app.launchArguments = ["enable-testing"]
+        app.launch()
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
 
@@ -24,9 +29,9 @@ final class RandomSprintNameGeneratorUITests: XCTestCase {
 
     func testExample() throws {
         // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-                
+        app.otherElements.buttons["Nav_SetFetchingVariablesView"].tap()
+        
+
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 

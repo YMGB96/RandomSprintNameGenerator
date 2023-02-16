@@ -42,6 +42,7 @@ struct PreviousSprintnamesListView: View {
     }
 }
 
+#if !TESTING
 struct PreviousSprintnamesListView_Previews: PreviewProvider {
     static let dataController: DataController = {
         let retVal = DataController(isInMemory: true)
@@ -63,3 +64,4 @@ struct PreviousSprintnamesListView_Previews: PreviewProvider {
             .environment(\.managedObjectContext, context)
     }
 }
+#endif

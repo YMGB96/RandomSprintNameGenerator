@@ -38,8 +38,10 @@ struct PreviousSprintnameDetailsView: View {
     }
 }
 
+#if !TESTING
 struct PreviousSprintnameDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         PreviousSprintnameDetailsView(name: "Tester", date: Date(), receivedVotes: Int16(5), totalVotes: Int16(7), roundsOfVotes: Int16(2))
     }
 }
+#endif

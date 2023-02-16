@@ -16,8 +16,10 @@ struct Imprint: View {
     }
 }
 
+#if !TESTING
 struct Imprint_Previews: PreviewProvider {
     static var previews: some View {
         Imprint()
     }
 }
+#endif
