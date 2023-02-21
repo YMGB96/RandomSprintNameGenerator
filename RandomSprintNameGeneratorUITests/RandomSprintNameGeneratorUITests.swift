@@ -24,23 +24,47 @@ final class RandomSprintNameGeneratorUITests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app.terminate()
+        try super.tearDownWithError()
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func test_SetFetchingVariables_TextFieldsAcceptOnlyValidInputsAndLenght() throws {
         app.otherElements.buttons["Nav_SetFetchingVariablesView"].tap()
-        
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        app.textFields["TextField_FirstLetter"].tap()
+        app.textFields["TextField_FirstLetter"].typeText("2ab")
+        XCTAssertEqual(app.textFields["TextField_FirstLetter"].value as! String, "a")
+        app.textFields["TextField_WordCount"].tap()
+        app.textFields["TextField_WordCount"].typeText("hg123")
+        XCTAssertEqual(app.textFields["TextField_WordCount"].value as! String, "10")
+        app.textFields["TextField_VoterAmount"].tap()
+        app.textFields["TextField_VoterAmount"].typeText("bs1234")
+        XCTAssertEqual(app.textFields["TextField_VoterAmount"].value as! String, "123")
+    }
+    
+    func test_VotingView_CorrectAmountOfVoteCandidatesCreated() throws {
+            app.otherElements.buttons["Nav_SetFetchingVariablesView"].tap()
+            app.textFields["TextField_FirstLetter"].tap()
+            app.textFields["TextField_FirstLetter"].typeText("a")
+            app.textFields["TextField_WordCount"].tap()
+            app.textFields["TextField_WordCount"].typeText("5")
+            app.textFields["TextField_VoterAmount"].tap()
+            app.textFields["TextField_VoterAmount"].typeText("5")
+            app.otherElements.buttons["Nav_VotingView"].tap()
+            sleep(2)
+            XCTAssertTrue(app.buttons["Button_CastVote\(0)"].exists)
+            XCTAssertTrue(app.buttons["Button_CastVote\(1)"].exists)
+            XCTAssertTrue(app.buttons["Button_CastVote\(2)"].exists)
+            XCTAssertTrue(app.buttons["Button_CastVote\(3)"].exists)
+            XCTAssertTrue(app.buttons["Button_CastVote\(4)"].exists)
+            XCTAssertFalse(app.buttons["Button_CastVote\(5)"].exists)
     }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+//    func testLaunchPerformance() throws {
+//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+//            // This measures how long it takes to launch your application.
+//            measure(metrics: [XCTApplicationLaunchMetric()]) {
+//                XCUIApplication().launch()
+//            }
+//        }
+//    }
 }

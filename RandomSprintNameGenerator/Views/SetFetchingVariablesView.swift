@@ -26,7 +26,7 @@ struct SetFetchingVariablesView: View {
                         randomWordFetcher.firstLetter = String(randomWordFetcher.firstLetter.prefix(1))
                     }
                 }
-                .accessibilityIdentifier("TestField_FirstLetter")
+                .accessibilityIdentifier("TextField_FirstLetter")
             Text("How many possible names would you like to generate? (2-10)")
                 .font(.title3)
             TextField("Word amount", text: $randomWordFetcher.wordCount)
