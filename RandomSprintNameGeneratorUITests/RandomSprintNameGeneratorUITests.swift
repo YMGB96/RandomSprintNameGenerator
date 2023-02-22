@@ -58,7 +58,14 @@ final class RandomSprintNameGeneratorUITests: XCTestCase {
             XCTAssertTrue(app.buttons["Button_CastVote\(4)"].exists)
             XCTAssertFalse(app.buttons["Button_CastVote\(5)"].exists)
     }
-
+    
+    func test_ContentView_AllViewsReachable() throws {
+        app.otherElements.buttons["Nav_SetFetchingVariablesView"].tap()
+        XCTAssertTrue(app.textFields["TextField_FirstLetter"].exists)
+        app.otherElements.buttons["Nav_Imprint"].tap()
+        XCTAssertTrue(app.staticTexts["API used for the random names:\nhttps://random-word-form.herokuapp.com"].exists)
+        app.otherElements.buttons["Nav_PreviousSprintNamesListView"].tap()
+    }
 //    func testLaunchPerformance() throws {
 //        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
 //            // This measures how long it takes to launch your application.

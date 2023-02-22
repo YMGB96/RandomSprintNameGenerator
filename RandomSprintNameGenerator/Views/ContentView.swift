@@ -21,7 +21,7 @@ struct ContentView: View {
                 NavigationLink("Previous Sprintnames", destination: PreviousSprintnamesListView())
                     .font(.title)
                     .bold()
-                    .accessibilityIdentifier("Nav_PreviousSprintnamesListView")
+                    .accessibilityIdentifier("Nav_PreviousSprintNamesListView")
                 NavigationLink("Imprint", destination: Imprint())
                     .font(.title)
                     .bold()
