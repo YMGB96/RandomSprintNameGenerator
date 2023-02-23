@@ -89,9 +89,28 @@ final class RandomSprintNameGeneratorTests: XCTestCase {
         wait(for: [failed], timeout: 3.0)
     }
 
-    func test_getRandomWords_errorHandling_BadDatasetFetched () throws {
+    func test_getRandomWords_errorHandling_EmptyDatasetFetched () throws {
 
-        let badData = Data()
+        let emptyData = Data()
+        let failed = expectation(description: "Did receive error")
+        underTest.errorCallback = { error in
+            print(error)
+            XCTAssertEqual((error as NSError).code, 4864)
+            failed.fulfill()
+        }
+        URLStubbing.stubResult = { request in
+            print("got it")
+            return (URLStubbing.StubResult.simple200ResponseWithData(emptyData))
+        }
+        underTest.getRandomWords(firstLetter: "a", wordCount: "5")
+
+        wait(for: [failed], timeout: 3.0)
+    }
+    
+    func test_getRandomWords_errorHandling_BadDatasetFetched () throws {
+        
+        let badJsonUrl = Bundle(for: type(of: self)).url(forResource: "API_bogusResponse", withExtension: "json")
+        let badData = try Data(contentsOf: badJsonUrl!)
         let failed = expectation(description: "Did receive error")
         underTest.errorCallback = { error in
             print(error)

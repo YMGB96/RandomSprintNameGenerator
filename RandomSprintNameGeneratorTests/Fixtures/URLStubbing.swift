@@ -18,12 +18,10 @@ class URLStubbing: URLProtocol {
     static var stubScheme = "https"
 
     static func register() {
-        print("activated URL stubbing")
         URLProtocol.registerClass(Self.self)
     }
 
     static func unregister() {
-        print("deactivated URL stubbing")
         URLProtocol.unregisterClass(Self.self)
     }
 
@@ -85,7 +83,7 @@ class URLStubbing: URLProtocol {
     }
 }
 
-// MARK: - The Stub-Ressult-Defining sub-type
+// MARK: - The Stub-Result-Defining sub-type
 extension URLStubbing {
 
     enum StubResult {
