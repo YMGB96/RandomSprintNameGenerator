@@ -25,19 +25,6 @@ class RandomWordFetcher: ObservableObject {
         self.host = host
     }
     
-//    private var _randomW: Bubba<[RandomWordElement]>
-//    = Bubba(initialValue: [])
-//    var $randomW: Publisher {
-//        _randomW.projectedValue
-//    }
-//    var randomW: [RandomWordElement] {
-//        get { _randomW.internalArray }
-//        set {
-//            objectWillChange.send()
-//            _randomW.internalArray = newValue
-//        }
-//    }
-//
     func getRandomWords(firstLetter: String, wordCount: String) {
         let firstLetter = firstLetter
         let wordCount = wordCount
