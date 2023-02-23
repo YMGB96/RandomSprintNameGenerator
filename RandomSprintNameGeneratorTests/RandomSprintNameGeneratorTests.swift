@@ -18,7 +18,6 @@ final class RandomSprintNameGeneratorTests: XCTestCase {
         let jsonURL = Bundle(for: type(of: self)).url(forResource: "API_goodResponse", withExtension: "json")
         goodJsonData = try Data(contentsOf: jsonURL!)
         underTest = RandomWordFetcher()
-        URLStubbing.stubSchemes.append("https")
         URLStubbing.register()
     }
 
@@ -35,9 +34,9 @@ final class RandomSprintNameGeneratorTests: XCTestCase {
             gotWords.fulfill()
         }
         defer { subber.cancel() }
-        URLStubbing.stubResponseAndData = { [unowned self] request in
+        URLStubbing.stubResult = { [unowned self] request in
             print("got it")
-            return (URLStubbing.simple200Response(for: request), goodJsonData)
+            return (URLStubbing.StubResult.simple200ResponseWithData(goodJsonData))
         }
         underTest.getRandomWords(firstLetter: "a", wordCount: "5")
         
@@ -45,7 +44,6 @@ final class RandomSprintNameGeneratorTests: XCTestCase {
         let foundwords = underTest.randomWords.map { $0.randomWord }
         XCTAssertEqual(foundwords, ["accuracy", "anwser", "abbey", "adaptation", "anchor"])
         underTest.randomWords.forEach { XCTAssertEqual($0.voteCount, 0) }
-//        let jsonString = "[\"accuracy\", \"anwser\", \"abbey\", \"adaptation\", \"anchor\"]".data(using: .utf8)
     }
 
     func test_isReadyToFetch_BoolGetsSetCorrectly () throws {
@@ -75,22 +73,24 @@ final class RandomSprintNameGeneratorTests: XCTestCase {
         XCTAssertEqual(underTest.randomWords[1].voteCount, 0)
         XCTAssertEqual(underTest.randomWords[1].randomWord, "c")
     }
-    
+
     func test_getRandomWords_errorHandling_NoInternetError () throws {
-        
+
         let failed = expectation(description: "Did receive error")
         underTest.errorCallback = { error in
             print(error)
             XCTAssertEqual((error as NSError).code, NSURLErrorNotConnectedToInternet)
             failed.fulfill()
         }
-        URLStubbing.stubError = URLStubbing.simpleNoInternetError
+        URLStubbing.stubResult = { request in
+            return URLStubbing.StubResult.simpleNoInternetError
+        }
         underTest.getRandomWords(firstLetter: "a", wordCount: "4")
         wait(for: [failed], timeout: 3.0)
     }
-    
+
     func test_getRandomWords_errorHandling_BadDatasetFetched () throws {
-        
+
         let badData = Data()
         let failed = expectation(description: "Did receive error")
         underTest.errorCallback = { error in
@@ -98,33 +98,27 @@ final class RandomSprintNameGeneratorTests: XCTestCase {
             XCTAssertEqual((error as NSError).code, 4864)
             failed.fulfill()
         }
-        URLStubbing.stubResponseAndData = { request in
+        URLStubbing.stubResult = { request in
             print("got it")
-            return (URLStubbing.simple200Response(for: request), badData)
+            return (URLStubbing.StubResult.simple200ResponseWithData(badData))
         }
         underTest.getRandomWords(firstLetter: "a", wordCount: "5")
-        
+
         wait(for: [failed], timeout: 3.0)
     }
-    
+
     func test_getRandomWords_errorHandling_BadStatusCode () throws {
-        
+
         let failed = expectation(description: "Did receive error")
         underTest.errorCallback = { error in
             print(error)
             XCTAssertEqual(error as! RandomWordFetcher.ResponseError, RandomWordFetcher.ResponseError.badStatusCode)
             failed.fulfill()
         }
-        URLStubbing.stubResponseAndData = URLStubbing.simple401Response
+        URLStubbing.stubResult = { request in
+            return URLStubbing.StubResult.simple401Response
+        }
         underTest.getRandomWords(firstLetter: "a", wordCount: "4")
         wait(for: [failed], timeout: 3.0)
     }
-    
-//    func testPerformanceExample() throws {
-//        // This is an example of a performance test case.
-//        self.measure {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
-
 }
