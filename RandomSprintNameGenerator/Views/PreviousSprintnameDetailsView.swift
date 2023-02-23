@@ -23,6 +23,7 @@ struct PreviousSprintnameDetailsView: View {
                 Image(systemName: "calendar")
                     .foregroundColor(.red)
                     .font(.title3)
+                    .accessibilityIdentifier("Img_Calendar")
                 Text("\(date.formatted())")
                     .font(.title3)
             }

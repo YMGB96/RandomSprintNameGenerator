@@ -65,6 +65,8 @@ final class RandomSprintNameGeneratorUITests: XCTestCase {
         app.otherElements.buttons["Nav_Imprint"].tap()
         XCTAssertTrue(app.staticTexts["API used for the random names:\nhttps://random-word-form.herokuapp.com"].exists)
         app.otherElements.buttons["Nav_PreviousSprintNamesListView"].tap()
+        app.otherElements.buttons.element(boundBy: 3).tap()
+        XCTAssertTrue(app.otherElements.images["Img_Calendar"].exists)
     }
     
     func test_VoteResultView_CalledAsExpected() throws {
