@@ -19,6 +19,7 @@ struct PreviousSprintnameDetailsView: View {
                 .bold()
                 .font(.largeTitle)
                 .foregroundColor(.green)
+                .accessibilityIdentifier("SprintName")
             HStack {
                 Image(systemName: "calendar")
                     .foregroundColor(.red)

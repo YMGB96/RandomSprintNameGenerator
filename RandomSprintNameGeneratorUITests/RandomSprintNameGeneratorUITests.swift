@@ -8,21 +8,21 @@
 import XCTest
 
 final class RandomSprintNameGeneratorUITests: XCTestCase {
-
+    
     var app: XCUIApplication!
     override func setUpWithError() throws {
         try super.setUpWithError()
-
+        
         app = XCUIApplication()
         app.launch()
         continueAfterFailure = false
     }
-
+    
     override func tearDownWithError() throws {
         app.terminate()
         try super.tearDownWithError()
     }
-
+    
     func test_SetFetchingVariables_TextFieldsAcceptOnlyValidInputsAndLenght() throws {
         app.otherElements.buttons["Nav_SetFetchingVariablesView"].tap()
         app.textFields["TextField_FirstLetter"].tap()
@@ -54,13 +54,13 @@ final class RandomSprintNameGeneratorUITests: XCTestCase {
         XCTAssertFalse(app.buttons["Button_CastVote\(5)"].exists)
     }
     
-    func test_ContentView_AllViewsReachable() throws {
+    func test_ContentView_AllNavigationLinksUseable() throws {
         app.otherElements.buttons["Nav_SetFetchingVariablesView"].tap()
         XCTAssertTrue(app.textFields["TextField_FirstLetter"].exists)
         app.otherElements.buttons["Nav_Imprint"].tap()
         XCTAssertTrue(app.staticTexts["API used for the random names:\nhttps://random-word-form.herokuapp.com"].exists)
         app.otherElements.buttons["Nav_PreviousSprintNamesListView"].tap()
-        app.otherElements.buttons.element(boundBy: 3).tap()
+        app.otherElements.buttons.element(boundBy: 2).tap()
         XCTAssertTrue(app.otherElements.images["Img_Calendar"].exists)
     }
     
@@ -91,6 +91,32 @@ final class RandomSprintNameGeneratorUITests: XCTestCase {
         app.buttons["Button_CastVote\(0)"].tap()
         app.buttons["Button_CastVote\(0)"].tap()
         app.buttons["Button_ShowVotingResults"].tap()
-        XCTAssertTrue(app.buttons["Button_SaveAndExit"].exists)
+        XCTAssertTrue(app.buttons["Button_Save"].exists)
+    }
+    func test_SprintNames_SaveableAndDeletable() throws {
+        app.otherElements.buttons["Nav_SetFetchingVariablesView"].tap()
+        app.textFields["TextField_FirstLetter"].tap()
+        app.textFields["TextField_FirstLetter"].typeText("a")
+        app.textFields["TextField_WordCount"].tap()
+        app.textFields["TextField_WordCount"].typeText("5")
+        app.textFields["TextField_VoterAmount"].tap()
+        app.textFields["TextField_VoterAmount"].typeText("2")
+        app.otherElements.buttons["Nav_VotingView"].tap()
+        XCTAssertTrue(app.buttons["Button_CastVote\(0)"].waitForExistence(timeout: 3.0))
+        app.buttons["Button_CastVote\(0)"].tap()
+        app.buttons["Button_CastVote\(0)"].tap()
+        app.buttons["Button_ShowVotingResults"].tap()
+        let votedName = app.staticTexts["ChosenSprintName"].label
+        app.buttons["Button_Save"].tap()
+        app.otherElements.buttons["Nav_PreviousSprintNamesListView"].tap()
+        app.otherElements.buttons.element(boundBy: 2).tap()
+        XCTAssertTrue(app.otherElements.images["Img_Calendar"].exists)
+        XCTAssertEqual(app.staticTexts["SprintName"].label, votedName)
+        app.otherElements.buttons.element(boundBy: 0).tap()
+        app.otherElements.buttons.element(boundBy: 2).swipeLeft()
+        app.otherElements.buttons.element(boundBy: 2).tap()
+        app.otherElements.buttons.element(boundBy: 2).tap()
+        XCTAssertTrue(app.otherElements.images["Img_Calendar"].exists)
+        XCTAssertNotEqual(app.staticTexts["SprintName"].label, votedName)
     }
 }

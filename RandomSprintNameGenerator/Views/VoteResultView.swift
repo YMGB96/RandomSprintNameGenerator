@@ -30,6 +30,7 @@ struct VoteResultView: View {
                     .font(.title)
                     .bold()
                     .foregroundColor(.green)
+                    .accessibilityIdentifier("ChosenSprintName")
                 Text("\n")
                 Button(action: {
                     let newEntry = SprintNames (context: moc)
@@ -44,10 +45,10 @@ struct VoteResultView: View {
                     voteHasFinished = true
                     showingVotingResult = false
                 }, label: {
-                    Text("Save & Exit")
+                    Text("Save")
                         .font(.title2)
                 })
-                .accessibilityIdentifier("Button_SaveAndExit")
+                .accessibilityIdentifier("Button_Save")
             }
             .interactiveDismissDisabled()
         }
