@@ -16,7 +16,6 @@
 		217AB8B6294B4FC900C89143 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 217AB8B5294B4FC900C89143 /* Assets.xcassets */; };
 		217AB8B9294B4FC900C89143 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 217AB8B8294B4FC900C89143 /* Preview Assets.xcassets */; };
 		217AB8C3294B4FC900C89143 /* RandomSprintNameGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8C2294B4FC900C89143 /* RandomSprintNameGeneratorTests.swift */; };
-		217AB8CF294B4FC900C89143 /* RandomSprintNameGenerator_SwiftVersion_UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8CE294B4FC900C89143 /* RandomSprintNameGenerator_SwiftVersion_UITestsLaunchTests.swift */; };
 		217AB8DE294B53FA00C89143 /* RandomWordFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8DD294B53FA00C89143 /* RandomWordFetcher.swift */; };
 		217AB8E0294B67EE00C89143 /* SetFetchingVariablesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8DF294B67EE00C89143 /* SetFetchingVariablesView.swift */; };
 		217AB8E2294B680100C89143 /* VotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB8E1294B680100C89143 /* VotingView.swift */; };
@@ -59,7 +58,6 @@
 		217AB8BE294B4FC900C89143 /* RandomSprintNameGeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomSprintNameGeneratorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		217AB8C2294B4FC900C89143 /* RandomSprintNameGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSprintNameGeneratorTests.swift; sourceTree = "<group>"; };
 		217AB8C8294B4FC900C89143 /* RandomSprintNameGeneratorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomSprintNameGeneratorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		217AB8CE294B4FC900C89143 /* RandomSprintNameGenerator_SwiftVersion_UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomSprintNameGenerator_SwiftVersion_UITestsLaunchTests.swift; sourceTree = "<group>"; };
 		217AB8DD294B53FA00C89143 /* RandomWordFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomWordFetcher.swift; sourceTree = "<group>"; };
 		217AB8DF294B67EE00C89143 /* SetFetchingVariablesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetFetchingVariablesView.swift; sourceTree = "<group>"; };
 		217AB8E1294B680100C89143 /* VotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingView.swift; sourceTree = "<group>"; };
@@ -170,7 +168,6 @@
 		217AB8CB294B4FC900C89143 /* RandomSprintNameGeneratorUITests */ = {
 			isa = PBXGroup;
 			children = (
-				217AB8CE294B4FC900C89143 /* RandomSprintNameGenerator_SwiftVersion_UITestsLaunchTests.swift */,
 				2174E84B299CE94D00CEA248 /* RandomSprintNameGeneratorUITests.swift */,
 			);
 			path = RandomSprintNameGeneratorUITests;
@@ -358,7 +355,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				217AB8CF294B4FC900C89143 /* RandomSprintNameGenerator_SwiftVersion_UITestsLaunchTests.swift in Sources */,
 				2174E84C299CE94D00CEA248 /* RandomSprintNameGeneratorUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
