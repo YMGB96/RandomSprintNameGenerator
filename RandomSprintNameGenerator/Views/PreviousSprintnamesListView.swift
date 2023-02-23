@@ -24,7 +24,7 @@ struct PreviousSprintnamesListView: View {
                             .foregroundColor(.green)
                     }
                 }
-                .accessibilityIdentifier("Nav_PreviousSprintnameDetailsView\(sprintName.index(ofAccessibilityElement: self))")
+                .accessibilityIdentifier("Nav_PreviousSprintnameDetailsView")
             }
             .onDelete(perform: deleteSprintName)
         }

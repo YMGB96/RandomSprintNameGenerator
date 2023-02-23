@@ -66,6 +66,36 @@ final class RandomSprintNameGeneratorUITests: XCTestCase {
         XCTAssertTrue(app.staticTexts["API used for the random names:\nhttps://random-word-form.herokuapp.com"].exists)
         app.otherElements.buttons["Nav_PreviousSprintNamesListView"].tap()
     }
+    
+    func test_VoteResultView_CalledAsExpected() throws {
+        app.otherElements.buttons["Nav_SetFetchingVariablesView"].tap()
+        app.textFields["TextField_FirstLetter"].tap()
+        app.textFields["TextField_FirstLetter"].typeText("a")
+        app.textFields["TextField_WordCount"].tap()
+        app.textFields["TextField_WordCount"].typeText("5")
+        app.textFields["TextField_VoterAmount"].tap()
+        app.textFields["TextField_VoterAmount"].typeText("5")
+        app.otherElements.buttons["Nav_VotingView"].tap()
+        sleep(2)
+        app.buttons["Button_CastVote\(0)"].tap()
+        app.buttons["Button_CastVote\(0)"].tap()
+        app.buttons["Button_CastVote\(2)"].tap()
+        app.buttons["Button_CastVote\(2)"].tap()
+        app.buttons["Button_CastVote\(3)"].tap()
+        app.buttons["Button_ShowVotingResults"].tap()
+        XCTAssertTrue(app.buttons["Button_TiebreakerVote"].exists)
+        app.buttons["Button_TiebreakerVote"].tap()
+        XCTAssertTrue(app.buttons["Button_CastVote\(0)"].exists)
+        XCTAssertTrue(app.buttons["Button_CastVote\(1)"].exists)
+        XCTAssertFalse(app.buttons["Button_CastVote\(2)"].exists)
+        app.buttons["Button_CastVote\(0)"].tap()
+        app.buttons["Button_CastVote\(0)"].tap()
+        app.buttons["Button_CastVote\(0)"].tap()
+        app.buttons["Button_CastVote\(0)"].tap()
+        app.buttons["Button_CastVote\(0)"].tap()
+        app.buttons["Button_ShowVotingResults"].tap()
+        XCTAssertTrue(app.buttons["Button_SaveAndExit"].exists)
+    }
 //    func testLaunchPerformance() throws {
 //        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
 //            // This measures how long it takes to launch your application.
